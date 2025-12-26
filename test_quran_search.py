@@ -9,7 +9,7 @@ ID_MAP_PATH = "indexes/gita_id_map.json"
 TOP_K = 5
 
 # GEMINI (DIRECT KEY)
-genai.configure(api_key="AIzaSyA4aPskEvCBEPq-XOjpzUrvPy78jYCmLFk")
+genai.configure(api_key="your gemini api Key")
 model = genai.GenerativeModel("models/gemini-flash-latest")
 
 # EMBEDDING MODEL
