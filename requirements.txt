@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sentence-transformers
+faiss-cpu
+google-generativeai
+python-dotenv
+toml
+numpy
+langdetect==1.0.9
