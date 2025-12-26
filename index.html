@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiritual AI Advisor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@200;300;400&family=Noto+Naskh+Arabic:wght@200;300;400&family=Crimson+Text:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="selection-body">
+    <div class="sacred-selection-universe">
+        <div class="cosmic-particles" id="cosmicParticles"></div>
+        <div class="sacred-geometry-bg" id="sacredGeometryBg"></div>
+    </div>
+
+    <div class="sacred-selection-container">
+        <header class="sacred-header">
+            <h1 class="sacred-main-title" data-translate="mainTitle">Spiritual AI Advisor</h1>
+            <p class="sacred-subtitle" data-translate="subtitle">Choose your spiritual guide and language</p>
+        </header>
+
+        <main class="sacred-book-selection">
+            <div class="sacred-language-selection">
+                <label for="languageSelect" class="sacred-language-label" data-translate="selectLanguage">Select Language</label>
+                <div class="sacred-dropdown-container">
+                    <select id="languageSelect" class="sacred-language-dropdown">
+                        <option value="" data-translate="chooseLanguage">Choose your language...</option>
+                        <option value="English" selected>English</option>
+                        <option value="Hindi">हिन्दी</option>
+                        <option value="Marathi">मराठी</option>
+                    </select>
+                    <div class="dropdown-arrow">◈</div>
+                </div>
+            </div>
+            <div class="sacred-books-grid">
+                <div class="sacred-book-card" data-book="Bhagavad Gita">
+                    <div class="sacred-book-icon">
+                        <div class="icon-glow bhagavad-glow">🕉️</div>
+                    </div>
+                    <h3 class="sacred-book-title" data-translate="bhagavadGita">Bhagavad Gita</h3>
+                    <p class="sacred-book-description" data-translate="bhagavadGitaDesc">Ancient wisdom from the sacred Hindu scripture</p>
+                </div>
+
+                <div class="sacred-book-card" data-book="Quran">
+                    <div class="sacred-book-icon">
+                        <div class="icon-glow quran-glow">☪️</div>
+                    </div>
+                    <h3 class="sacred-book-title" data-translate="quran">Quran</h3>
+                    <p class="sacred-book-description" data-translate="quranDesc">Divine guidance from the holy Islamic text</p>
+                </div>
+
+                <div class="sacred-book-card" data-book="Bible">
+                    <div class="sacred-book-icon">
+                        <div class="icon-glow bible-glow">✝️</div>
+                    </div>
+                    <h3 class="sacred-book-title" data-translate="bible">Bible</h3>
+                    <p class="sacred-book-description" data-translate="bibleDesc">Eternal truths from the Christian scriptures</p>
+                </div>
+            </div>
+
+            <button id="continueBtn" class="sacred-continue-btn" disabled>
+                <span class="btn-text" data-translate="continueBtn">Continue</span>
+                <div class="btn-glow"></div>
+            </button>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1537 @@
+/* Sacred Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans Devanagari', 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        #0f0f23 0%, 
+        #1a1a2e 25%, 
+        #16213e 50%, 
+        #1a1a2e 75%, 
+        #0f0f23 100%);
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Language-specific font support */
+html[lang="hi"], html[lang="mr"] {
+    font-family: 'Noto Sans Devanagari', 'Inter', 'Segoe UI', sans-serif;
+}
+
+html[lang="hi"] .sacred-main-title,
+html[lang="mr"] .sacred-main-title {
+    font-family: 'Noto Sans Devanagari', serif;
+    font-weight: 300;
+}
+
+html[lang="hi"] .sacred-book-title,
+html[lang="mr"] .sacred-book-title,
+html[lang="hi"] .sacred-title,
+html[lang="mr"] .sacred-title {
+    font-family: 'Noto Sans Devanagari', serif;
+    font-weight: 300;
+}
+
+/* Sacred Selection Page Styles */
+.selection-body {
+    background: linear-gradient(135deg, 
+        #0f0f23 0%, 
+        #1a1a2e 25%, 
+        #16213e 50%, 
+        #1a1a2e 75%, 
+        #0f0f23 100%);
+    overflow: auto;
+}
+
+.sacred-selection-universe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center,
+        rgba(138, 43, 226, 0.1) 0%,
+        rgba(75, 0, 130, 0.05) 30%,
+        rgba(25, 25, 112, 0.03) 60%,
+        transparent 100%);
+}
+
+.cosmic-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.selection-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(255, 215, 0, 0.9) 0%, 
+        rgba(255, 165, 0, 0.6) 50%, 
+        transparent 70%);
+    opacity: 0;
+    animation: selectionParticleFloat 20s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.sacred-geometry-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150vmax;
+    height: 150vmax;
+    transform: translate(-50%, -50%);
+    opacity: 0.08;
+    background: radial-gradient(circle,
+        transparent 30%,
+        rgba(255, 215, 0, 0.15) 31%,
+        transparent 32%,
+        transparent 40%,
+        rgba(138, 43, 226, 0.1) 41%,
+        transparent 42%,
+        transparent 50%,
+        rgba(255, 215, 0, 0.08) 51%,
+        transparent 52%);
+    animation: sacredGeometryRotate 300s linear infinite;
+}
+
+.sacred-selection-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.sacred-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.sacred-main-title {
+    font-size: 3.5rem;
+    font-weight: 200;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, 
+        #ffd700 0%, 
+        #ffed4e 25%, 
+        #f39c12 50%, 
+        #e67e22 75%, 
+        #d35400 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+    animation: titleGlow 4s ease-in-out infinite;
+}
+
+.sacred-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(255, 215, 0, 0.8) 50%, 
+        rgba(255, 255, 255, 0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+}
+
+.sacred-book-selection {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.sacred-language-selection {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.sacred-language-label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(255, 215, 0, 0.8) 50%, 
+        rgba(255, 255, 255, 0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.sacred-dropdown-container {
+    position: relative;
+    display: inline-block;
+    max-width: 300px;
+    width: 100%;
+}
+
+.sacred-language-dropdown {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1.5rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(138, 43, 226, 0.05) 50%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.8s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.sacred-language-dropdown:focus {
+    border-color: rgba(255, 215, 0, 0.5);
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.15) 0%, 
+        rgba(138, 43, 226, 0.1) 50%, 
+        rgba(255, 215, 0, 0.15) 100%);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
+                0 0 50px rgba(255, 215, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.sacred-language-dropdown option {
+    background: rgba(15, 15, 35, 0.95);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem;
+    font-weight: 300;
+}
+
+.dropdown-arrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 215, 0, 0.7);
+    font-size: 1rem;
+    pointer-events: none;
+    animation: symbolPulse 3s ease-in-out infinite;
+}
+
+.sacred-books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.sacred-book-card {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(138, 43, 226, 0.05) 50%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.8s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sacred-book-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.1) 0%, 
+        rgba(138, 43, 226, 0.08) 50%, 
+        rgba(255, 215, 0, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.sacred-book-card:hover::before {
+    opacity: 1;
+}
+
+.sacred-book-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                0 0 50px rgba(255, 215, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.sacred-book-card.selected {
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.15) 0%, 
+        rgba(138, 43, 226, 0.1) 50%, 
+        rgba(255, 215, 0, 0.15) 100%);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+                0 0 60px rgba(255, 215, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.sacred-book-icon {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.icon-glow {
+    font-size: 4rem;
+    display: inline-block;
+    position: relative;
+    animation: iconPulse 3s ease-in-out infinite;
+}
+
+.bhagavad-glow {
+    color: #ff6b35;
+    text-shadow: 0 0 25px rgba(255, 107, 53, 0.8),
+                 0 0 50px rgba(255, 140, 0, 0.4);
+    filter: drop-shadow(0 0 15px rgba(255, 107, 53, 0.6));
+}
+
+.quran-glow {
+    color: #00d4aa;
+    text-shadow: 0 0 25px rgba(0, 212, 170, 0.8),
+                 0 0 50px rgba(0, 255, 127, 0.4);
+    filter: drop-shadow(0 0 15px rgba(0, 212, 170, 0.6));
+}
+
+.bible-glow {
+    color: #667eea;
+    text-shadow: 0 0 25px rgba(102, 126, 234, 0.8),
+                 0 0 50px rgba(138, 43, 226, 0.4);
+    filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.6));
+}
+
+.sacred-book-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(255, 215, 0, 0.9) 50%, 
+        rgba(255, 255, 255, 0.95) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.sacred-book-description {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+
+.sacred-continue-btn {
+    width: 200px;
+    height: 60px;
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.15) 0%, 
+        rgba(138, 43, 226, 0.1) 50%, 
+        rgba(255, 215, 0, 0.15) 100%);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 30px;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.8s ease;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.sacred-continue-btn:not(:disabled):hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 215, 0, 0.6);
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.25) 0%, 
+        rgba(138, 43, 226, 0.15) 50%, 
+        rgba(255, 215, 0, 0.25) 100%);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
+                0 0 50px rgba(255, 215, 0, 0.2);
+}
+
+.sacred-continue-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(255, 215, 0, 0.9) 50%, 
+        rgba(255, 255, 255, 0.95) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.2) 0%, 
+        rgba(138, 43, 226, 0.15) 50%, 
+        rgba(255, 215, 0, 0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.sacred-continue-btn:not(:disabled):hover .btn-glow {
+    opacity: 1;
+}
+
+/* Sacred Selection Animations */
+@keyframes titleGlow {
+    0%, 100% { 
+        text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+    }
+    50% { 
+        text-shadow: 0 0 60px rgba(255, 215, 0, 0.6);
+        filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
+    }
+}
+
+@keyframes iconPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 1;
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes selectionParticleFloat {
+    0% { 
+        opacity: 0; 
+        transform: translateY(100vh) translateX(0) scale(0.5); 
+    }
+    10% { 
+        opacity: 0.8; 
+        transform: translateY(90vh) translateX(10px) scale(1);
+    }
+    90% { 
+        opacity: 0.8; 
+        transform: translateY(10vh) translateX(90px) scale(1);
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateY(-100px) translateX(100px) scale(0.5); 
+    }
+}
+
+@keyframes sacredGeometryRotate {
+    0% { 
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 0.08;
+    }
+    50% {
+        opacity: 0.12;
+    }
+    100% { 
+        transform: translate(-50%, -50%) rotate(360deg);
+        opacity: 0.08;
+    }
+}
+
+/* Responsive Sacred Selection Design */
+@media (min-width: 1400px) {
+    .sacred-selection-container {
+        max-width: 1400px;
+    }
+    
+    .sacred-books-grid {
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto 3rem auto;
+    }
+    
+    .sacred-book-card {
+        padding: 3rem 2.5rem;
+        min-height: 360px;
+    }
+    
+    .icon-glow {
+        font-size: 4.5rem;
+    }
+    
+    .sacred-book-title {
+        font-size: 2rem;
+    }
+    
+    .sacred-book-description {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .sacred-selection-container {
+        padding: 3rem 1.5rem;
+    }
+    
+    .sacred-books-grid {
+        gap: 1.5rem;
+    }
+    
+    .sacred-book-card {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .sacred-main-title {
+        font-size: 3rem;
+        letter-spacing: 3px;
+    }
+    
+    .sacred-books-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .sacred-book-card {
+        padding: 1.8rem 1.2rem;
+        min-height: 280px;
+    }
+    
+    .icon-glow {
+        font-size: 3.5rem;
+    }
+    
+    .sacred-book-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sacred-selection-container {
+        padding: 2rem 1rem;
+    }
+    
+    .sacred-main-title {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+    
+    .sacred-subtitle {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .sacred-language-selection {
+        margin-bottom: 2rem;
+    }
+    
+    .sacred-language-label {
+        font-size: 1rem;
+    }
+    
+    .sacred-dropdown-container {
+        max-width: 280px;
+    }
+    
+    .sacred-language-dropdown {
+        padding: 0.9rem 2.5rem 0.9rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    
+    .sacred-books-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .sacred-book-card {
+        padding: 2rem 1.5rem;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .icon-glow {
+        font-size: 3rem;
+    }
+    
+    .sacred-book-title {
+        font-size: 1.5rem;
+    }
+    
+    .sacred-continue-btn {
+        width: 180px;
+        height: 55px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sacred-main-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .sacred-language-selection {
+        margin-bottom: 1.5rem;
+    }
+    
+    .sacred-language-label {
+        font-size: 0.95rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .sacred-dropdown-container {
+        max-width: 260px;
+    }
+    
+    .sacred-language-dropdown {
+        padding: 0.8rem 2.2rem 0.8rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 15px;
+    }
+    
+    .dropdown-arrow {
+        right: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .sacred-book-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .icon-glow {
+        font-size: 2.5rem;
+    }
+    
+    .sacred-book-title {
+        font-size: 1.3rem;
+    }
+    
+    .sacred-book-description {
+        font-size: 0.9rem;
+    }
+    
+    .sacred-continue-btn {
+        width: 160px;
+        height: 50px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Sacred Universe Background */
+.sacred-universe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.sacred-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 0, 0, 0.1); /* Debug fallback color */
+    opacity: 0.4;
+    transition: all 2s ease-in-out;
+    animation: backgroundBreathing 25s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* Debug styles to verify class application */
+.sacred-universe.bhagavad-gita {
+    border: 2px solid orange; /* Debug border */
+}
+
+.sacred-universe.quran {
+    border: 2px solid green; /* Debug border */
+}
+
+.sacred-universe.bible {
+    border: 2px solid blue; /* Debug border */
+}
+
+/* Background image styles with fallback colors - All using Bhagavad Gita background */
+.sacred-universe.bhagavad-gita .sacred-background-image {
+    background-image: url('./assets/bhagwatbg.jpg');
+    background-color: rgba(255, 193, 7, 0.2); /* Debug fallback */
+}
+
+.sacred-universe.quran .sacred-background-image {
+    background-image: url('./assets/bhagwatbg.jpg');
+    background-color: rgba(76, 175, 80, 0.2); /* Debug fallback */
+}
+
+.sacred-universe.bible .sacred-background-image {
+    background-image: url('./assets/bhagwatbg.jpg');
+    background-color: rgba(33, 150, 243, 0.2); /* Debug fallback */
+}
+
+.cosmic-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: cosmicBreathing 20s ease-in-out infinite;
+    z-index: 1;
+}
+
+.sacred-universe.bhagavad-gita .cosmic-gradient {
+    background: radial-gradient(ellipse at center, 
+        rgba(255, 107, 53, 0.2) 0%,
+        rgba(255, 140, 0, 0.15) 25%,
+        rgba(139, 69, 19, 0.1) 50%,
+        rgba(15, 15, 35, 0.9) 100%);
+}
+
+.sacred-universe.quran .cosmic-gradient {
+    background: radial-gradient(ellipse at center,
+        rgba(0, 212, 170, 0.2) 0%,
+        rgba(0, 255, 127, 0.15) 25%,
+        rgba(27, 94, 32, 0.1) 50%,
+        rgba(15, 15, 35, 0.9) 100%);
+}
+
+.sacred-universe.bible .cosmic-gradient {
+    background: radial-gradient(ellipse at center,
+        rgba(102, 126, 234, 0.2) 0%,
+        rgba(138, 43, 226, 0.15) 25%,
+        rgba(75, 0, 130, 0.1) 50%,
+        rgba(15, 15, 35, 0.9) 100%);
+}
+
+.mandala-layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120vmax;
+    height: 120vmax;
+    transform: translate(-50%, -50%);
+    opacity: 0.04;
+    animation: mandalaRotation 180s linear infinite;
+    z-index: 2;
+}
+
+.sacred-universe.bhagavad-gita .mandala-layer {
+    background: radial-gradient(circle,
+        transparent 30%,
+        rgba(255, 193, 7, 0.1) 31%,
+        transparent 32%,
+        transparent 40%,
+        rgba(255, 152, 0, 0.08) 41%,
+        transparent 42%,
+        transparent 50%,
+        rgba(255, 193, 7, 0.06) 51%,
+        transparent 52%);
+}
+
+.sacred-universe.quran .mandala-layer {
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(76, 175, 80, 0.08) 45deg,
+        transparent 90deg,
+        rgba(46, 125, 50, 0.06) 135deg,
+        transparent 180deg,
+        rgba(76, 175, 80, 0.08) 225deg,
+        transparent 270deg,
+        rgba(46, 125, 50, 0.06) 315deg,
+        transparent 360deg);
+}
+
+.sacred-universe.bible .mandala-layer {
+    background: 
+        linear-gradient(0deg, transparent 48%, rgba(33, 150, 243, 0.06) 50%, transparent 52%),
+        linear-gradient(90deg, transparent 48%, rgba(21, 101, 192, 0.06) 50%, transparent 52%);
+}
+
+.light-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleFloat 15s ease-in-out infinite;
+}
+
+.sacred-universe.bhagavad-gita .particle {
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.9) 0%, rgba(255, 140, 0, 0.6) 50%, transparent 70%);
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.8);
+}
+
+.sacred-universe.quran .particle {
+    background: radial-gradient(circle, rgba(0, 212, 170, 0.9) 0%, rgba(0, 255, 127, 0.6) 50%, transparent 70%);
+    box-shadow: 0 0 10px rgba(0, 212, 170, 0.8);
+}
+
+.sacred-universe.bible .particle {
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.9) 0%, rgba(138, 43, 226, 0.6) 50%, transparent 70%);
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.8);
+}
+
+.scripture-flow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 4;
+}
+
+.sacred-text {
+    position: absolute;
+    font-size: 1.8rem;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: sacredFlow 45s linear infinite;
+    user-select: none;
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+
+.sacred-universe.bhagavad-gita .sacred-text {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    color: rgba(255, 193, 7, 0.15);
+    font-size: 2.2rem;
+}
+
+.sacred-universe.quran .sacred-text {
+    font-family: 'Noto Naskh Arabic', serif;
+    color: rgba(76, 175, 80, 0.15);
+    font-size: 2rem;
+    direction: rtl;
+}
+
+.sacred-universe.bible .sacred-text {
+    font-family: 'Crimson Text', serif;
+    color: rgba(33, 150, 243, 0.15);
+    font-size: 1.6rem;
+    font-style: italic;
+}
+
+.sacred-geometry {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.03;
+    z-index: 2;
+}
+
+/* Sacred Tablet (Main Container) */
+.sacred-tablet {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 900px);
+    height: min(85vh, 700px);
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: tabletGlow 8s ease-in-out infinite;
+    z-index: 10;
+}
+
+.sacred-universe.bhagavad-gita .sacred-tablet {
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.6),
+        0 0 100px rgba(255, 193, 7, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.sacred-universe.quran .sacred-tablet {
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.6),
+        0 0 100px rgba(76, 175, 80, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.sacred-universe.bible .sacred-tablet {
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.6),
+        0 0 100px rgba(33, 150, 243, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Divine Header */
+.divine-header {
+    padding: 2rem 2rem 1rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sacred-title {
+    font-size: 1.8rem;
+    font-weight: 200;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.divine-divider {
+    width: 60px;
+    height: 1px;
+    margin: 1rem auto;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: dividerPulse 4s ease-in-out infinite;
+}
+
+.sacred-universe.bhagavad-gita .divine-divider {
+    background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.7), transparent);
+}
+
+.sacred-universe.quran .divine-divider {
+    background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.7), transparent);
+}
+
+.sacred-universe.bible .divine-divider {
+    background: linear-gradient(90deg, transparent, rgba(33, 150, 243, 0.7), transparent);
+}
+
+.guidance-text {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.language-text {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+}
+
+.sacred-book {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 400;
+}
+
+.sacred-language {
+    color: rgba(255, 215, 0, 0.9);
+    font-weight: 400;
+}
+
+/* Wisdom Chamber (Messages Area) */
+.wisdom-chamber {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.message-stream {
+    height: 100%;
+    overflow-y: auto;
+    padding: 2rem;
+    scroll-behavior: smooth;
+}
+
+.message-stream::-webkit-scrollbar {
+    width: 4px;
+}
+
+.message-stream::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.message-stream::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.message {
+    margin-bottom: 2rem;
+    animation: messageAppear 1s ease-out;
+}
+
+.message-essence {
+    max-width: 75%;
+    padding: 1.5rem 2rem;
+    border-radius: 25px;
+    position: relative;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+.sacred-sources {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sources-label {
+    font-size: 0.8rem;
+    color: rgba(255, 215, 0, 0.8);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.sources-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.source-reference {
+    background: rgba(255, 215, 0, 0.15);
+    color: rgba(255, 215, 0, 0.9);
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.sacred-universe.bhagavad-gita .source-reference {
+    background: rgba(255, 193, 7, 0.15);
+    color: rgba(255, 193, 7, 0.9);
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+.sacred-universe.quran .source-reference {
+    background: rgba(76, 175, 80, 0.15);
+    color: rgba(76, 175, 80, 0.9);
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.sacred-universe.bible .source-reference {
+    background: rgba(33, 150, 243, 0.15);
+    color: rgba(33, 150, 243, 0.9);
+    border-color: rgba(33, 150, 243, 0.3);
+}
+
+.divine-message .message-essence {
+    background: rgba(255, 255, 255, 0.12);
+    margin-right: auto;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.95);
+    border-bottom-left-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.seeker-message .message-essence {
+    margin-left: auto;
+    border-bottom-right-radius: 8px;
+    color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.sacred-universe.bhagavad-gita .seeker-message .message-essence {
+    background: rgba(255, 193, 7, 0.2);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.sacred-universe.quran .seeker-message .message-essence {
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.sacred-universe.bible .seeker-message .message-essence {
+    background: rgba(33, 150, 243, 0.2);
+    border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.message-timestamp {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 0.5rem;
+    text-align: right;
+    font-weight: 200;
+}
+
+.divine-message .message-timestamp {
+    text-align: left;
+}
+
+.contemplating-message {
+    font-style: italic;
+    opacity: 0.8;
+    animation: contemplationPulse 2s ease-in-out infinite;
+}
+
+/* Sacred Input Realm */
+.sacred-input-realm {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ceremonial-input-container {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    position: relative;
+}
+
+.soul-input {
+    flex: 1;
+    padding: 1.2rem 1.8rem;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 300;
+    resize: none;
+    outline: none;
+    transition: all 0.8s ease;
+    max-height: 120px;
+    min-height: 55px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.soul-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+.soul-input:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+}
+
+.sacred-universe.bhagavad-gita .soul-input:focus {
+    border-color: rgba(255, 193, 7, 0.5);
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.15);
+}
+
+.sacred-universe.quran .soul-input:focus {
+    border-color: rgba(76, 175, 80, 0.5);
+    box-shadow: 0 0 30px rgba(76, 175, 80, 0.15);
+}
+
+.sacred-universe.bible .soul-input:focus {
+    border-color: rgba(33, 150, 243, 0.5);
+    box-shadow: 0 0 30px rgba(33, 150, 243, 0.15);
+}
+
+.transcend-btn {
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.8s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sacred-universe.bhagavad-gita .transcend-btn {
+    background: rgba(255, 193, 7, 0.2);
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+.sacred-universe.quran .transcend-btn {
+    background: rgba(76, 175, 80, 0.2);
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.sacred-universe.bible .transcend-btn {
+    background: rgba(33, 150, 243, 0.2);
+    border-color: rgba(33, 150, 243, 0.3);
+}
+
+.transcend-btn:hover:not(:disabled) {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.transcend-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.sacred-symbol {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    animation: symbolPulse 3s ease-in-out infinite;
+}
+
+/* Sacred Animations */
+@keyframes backgroundBreathing {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 0.4; 
+    }
+    50% { 
+        transform: scale(1.05); 
+        opacity: 0.5; 
+    }
+}
+
+@keyframes cosmicBreathing {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes mandalaRotation {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes particleFloat {
+    0% { 
+        opacity: 0; 
+        transform: translateY(100vh) translateX(0); 
+    }
+    10% { 
+        opacity: 0.8; 
+    }
+    90% { 
+        opacity: 0.8; 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateY(-100px) translateX(50px); 
+    }
+}
+
+@keyframes sacredFlow {
+    0% {
+        transform: translateX(-200px) translateY(0);
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.15;
+    }
+    95% {
+        opacity: 0.15;
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px)) translateY(-30px);
+        opacity: 0;
+    }
+}
+
+@keyframes tabletGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.6),
+            0 0 100px rgba(255, 255, 255, 0.05),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    50% { 
+        box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.6),
+            0 0 100px rgba(255, 255, 255, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+}
+
+@keyframes dividerPulse {
+    0%, 100% { opacity: 0.5; transform: scaleX(1); }
+    50% { opacity: 1; transform: scaleX(1.2); }
+}
+
+@keyframes messageAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes contemplationPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.9; }
+}
+
+@keyframes symbolPulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Responsive Sacred Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .books-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .book-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .sacred-tablet {
+        width: 95vw;
+        height: 90vh;
+        border-radius: 20px;
+    }
+    
+    .divine-header {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+    
+    .sacred-title {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+    
+    .guidance-text {
+        font-size: 0.85rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .language-text {
+        font-size: 0.8rem;
+    }
+    
+    .message-stream {
+        padding: 1.5rem;
+    }
+    
+    .message-essence {
+        max-width: 85%;
+        padding: 1.2rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .sacred-sources {
+        margin-top: 0.8rem;
+        padding-top: 0.8rem;
+    }
+    
+    .sources-label {
+        font-size: 0.75rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .source-reference {
+        padding: 0.25rem 0.6rem;
+        font-size: 0.7rem;
+        border-radius: 10px;
+    }
+    
+    .sacred-input-realm {
+        padding: 1.5rem;
+    }
+    
+    .soul-input {
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .transcend-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .sacred-text {
+        font-size: 1.4rem;
+    }
+    
+    .sacred-universe.bhagavad-gita .sacred-text {
+        font-size: 1.6rem;
+    }
+    
+    .sacred-universe.quran .sacred-text {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .book-card {
+        padding: 1rem;
+    }
+    
+    .book-icon {
+        font-size: 2rem;
+    }
+    
+    .book-title {
+        font-size: 1.1rem;
+    }
+    
+    .sacred-tablet {
+        width: 98vw;
+        height: 95vh;
+        border-radius: 15px;
+    }
+    
+    .divine-header {
+        padding: 1rem;
+    }
+    
+    .sacred-title {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+    
+    .message-essence {
+        max-width: 90%;
+        padding: 1rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    .sacred-sources {
+        margin-top: 0.6rem;
+        padding-top: 0.6rem;
+    }
+    
+    .sources-label {
+        font-size: 0.7rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .sources-list {
+        gap: 0.3rem;
+    }
+    
+    .source-reference {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.65rem;
+        border-radius: 8px;
+    }
+    
+    .sacred-input-realm {
+        padding: 1rem;
+    }
+    
+    .soul-input {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .transcend-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .sacred-text {
+        font-size: 1.2rem;
+    }
+}
